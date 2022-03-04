@@ -10,10 +10,12 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         title: Container(
-          width: size.width * 0.7,
+          constraints: BoxConstraints(
+            maxWidth: size.width * 0.7
+          ),
           decoration: BoxDecoration(
             color: Colors.black12,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: TextField(
             decoration: InputDecoration(
