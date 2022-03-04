@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teche_commerce/view/app_router.dart';
+import 'package:teche_commerce/view/theme/theme.dart';
 
 class App extends StatefulWidget {
   const App({Key? key, required this.router}) : super(key: key);
@@ -13,6 +14,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: AppTheme.lightTheme,
       onGenerateRoute: widget.router.onGenerateRoute,
     );
   }

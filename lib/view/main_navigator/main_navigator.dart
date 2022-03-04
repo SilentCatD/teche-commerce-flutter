@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:teche_commerce/view/main_navigator/widgets/bottom_nav_bar.dart';
+import 'package:teche_commerce/view/main_navigator/widgets/screen_switcher.dart';
 
 class MainNavigator extends StatelessWidget {
   const MainNavigator({Key? key}) : super(key: key);
@@ -6,33 +8,13 @@ class MainNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      body: const ScreenSwitcher(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
-        child: Icon(Icons.qr_code),
+        child: const Icon(Icons.qr_code),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        color: Theme.of(context).colorScheme.primary,
-        shape: const CircularNotchedRectangle(),
-        notchMargin: 8,
-        child: IconTheme(
-          data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.home)),
-              IconButton(onPressed: () {}, icon: Icon(Icons.favorite)),
-              Opacity(
-                child: IconButton(onPressed: () {}, icon: const Icon(Icons.add)),
-                opacity: 0,
-              ),
-              IconButton(onPressed: () {}, icon:Icon(Icons.notifications)),
-              IconButton(onPressed: () {}, icon:Icon(Icons.account_circle)),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }
