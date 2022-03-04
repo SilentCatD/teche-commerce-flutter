@@ -13,9 +13,12 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: AppTheme.lightTheme,
-      onGenerateRoute: widget.router.onGenerateRoute,
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: MaterialApp(
+        theme: AppTheme.lightTheme,
+        onGenerateRoute: widget.router.onGenerateRoute,
+      ),
     );
   }
 

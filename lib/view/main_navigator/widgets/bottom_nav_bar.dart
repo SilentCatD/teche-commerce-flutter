@@ -13,13 +13,12 @@ class BottomNavBar extends StatelessWidget {
         data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
+          children: const [
             NavigationButton( icon: Icon(Icons.home), index: 0),
             NavigationButton(icon: Icon(Icons.favorite), index: 1),
             PaddingButton(),
             NavigationButton(icon: Icon(Icons.notifications), index: 2),
             NavigationButton(icon: Icon(Icons.account_circle), index: 3),
-
           ],
         ),
       ),
