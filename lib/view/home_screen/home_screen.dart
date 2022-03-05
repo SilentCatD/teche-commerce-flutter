@@ -1,49 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teche_commerce/controller/top_brands_bloc/bloc/top_brands_bloc.dart';
+import 'package:teche_commerce/data/repository/data_repository.dart';
+import 'package:teche_commerce/view/commons/cart_button/cart_button.dart';
+import 'package:teche_commerce/view/home_screen/widgets/brands_list/brands_list.dart';
+import 'package:teche_commerce/view/home_screen/widgets/search_bar.dart';
+import 'package:teche_commerce/view/home_screen/widgets/title_text.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    return BlocProvider(
+      create: (context) => TopBrandsBloc(dataRepository: context.read<DataRepository>()),
+      child: const HomeScreenView(),
+    );
+  }
+}
+
+
+class HomeScreenView extends StatelessWidget {
+  const HomeScreenView({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Container(
-          constraints: BoxConstraints(
-            maxWidth: size.width * 0.7
-          ),
-          decoration: BoxDecoration(
-            color: Colors.black12,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: TextField(
-            decoration: InputDecoration(
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              hintText: "Search product",
-              prefixIcon: Icon(Icons.search),
-            ),
-          ),
-        ),
-        actions: [
-          Container(
-            margin: EdgeInsets.only(right: 20),
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.black12,
-            ),
-            child: InkWell(
-                onTap: () {},
-                customBorder: CircleBorder(),
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Icon(
-                    Icons.add_shopping_cart,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                )),
-          )
+        title: const SearchBar(),
+        actions: const [
+          CartButton(),
         ],
       ),
       body: Container(
@@ -54,19 +41,10 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Top brands",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 10),
-                Container(
-                  height: 80,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                )
+                TitleText(text: "Top brands"),
+                SizedBox(height: 20),
+                BrandsList(),
+                SizedBox(height: 30),
               ],
             ),
           ),
