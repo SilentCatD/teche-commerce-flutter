@@ -3,9 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teche_commerce/controller/top_brands_bloc/bloc/top_brands_bloc.dart';
 import 'package:teche_commerce/data/repository/data_repository.dart';
 import 'package:teche_commerce/view/commons/cart_button/cart_button.dart';
-import 'package:teche_commerce/view/home_screen/widgets/brands_list/brands_list.dart';
 import 'package:teche_commerce/view/home_screen/widgets/search_bar.dart';
-import 'package:teche_commerce/view/home_screen/widgets/title_text.dart';
+import 'package:teche_commerce/view/home_screen/widgets/top_brands_section/top_brands_section.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -41,10 +40,7 @@ class HomeScreenView extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TitleText(text: "Top brands"),
-                SizedBox(height: 20),
-                BrandsList(),
-                SizedBox(height: 30),
+                TopBrandsSection(),
               ],
             ),
           ),

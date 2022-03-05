@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teche_commerce/controller/top_brands_bloc/top_branch_bloc.dart';
-import 'package:teche_commerce/view/home_screen/widgets/brands_list/brand_item.dart';
+import 'brand_item.dart';
 
 class BrandsList extends StatefulWidget {
   const BrandsList({Key? key}) : super(key: key);
