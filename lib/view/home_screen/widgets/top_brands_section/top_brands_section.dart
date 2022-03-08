@@ -14,10 +14,11 @@ class _TopBrandsSectionState extends State<TopBrandsSection> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
-        TitleText(text: "Top brands"),
-        SizedBox(height: 20),
-        BrandsList(),
+      mainAxisSize: MainAxisSize.min,
+      children:  [
+        TitleText(text: "Top brands", onPress: (){},),
+        const SizedBox(height: 20),
+        const BrandsList(),
       ],
     );
   }

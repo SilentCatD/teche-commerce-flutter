@@ -1,0 +1,4 @@
+enum SoldStatus{
+  soldOut,
+  inStock,
+}

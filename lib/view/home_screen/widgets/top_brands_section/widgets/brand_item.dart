@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teche_commerce/data/model/brand.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class BrandItem extends StatelessWidget {
   const BrandItem({Key? key, required this.brand}) : super(key: key);
@@ -8,36 +9,48 @@ class BrandItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: (){},
-      child: Container(
-        margin: const EdgeInsets.only(right: 20),
-        height: 100,
-        width: 200,
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(20),
-          image: brand.imgUrl != null
-              ? DecorationImage(
-                  opacity: 0.5,
-                  image: Image.network(
-                    brand.imgUrl!,
-                  ).image,
+    return Container(
+      margin: const EdgeInsets.only(right: 20),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(20),
+        child: Stack(
+          children: [
+            if (brand.imgUrl != null)
+              SizedBox(
+                width: 200,
+                height: 100,
+                child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: brand.imgUrl!,
                   fit: BoxFit.fill,
-                )
-              : null,
-        ),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child: Container(
-            margin: const EdgeInsets.only(left: 20),
-            child: Text(
-              brand.name,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                  color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
+                ),
+              ),
+            Container(
+              width: 200,
+              height: 100,
+              color: Colors.black.withOpacity(0.5),
             ),
-          ),
+            SizedBox(
+              width: 200,
+              height: 100,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Container(
+                  margin: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    brand.name,
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).canvasColor,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

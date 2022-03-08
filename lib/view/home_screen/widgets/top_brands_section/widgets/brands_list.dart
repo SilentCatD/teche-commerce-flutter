@@ -3,19 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teche_commerce/controller/top_brands_bloc/top_branch_bloc.dart';
 import 'brand_item.dart';
 
-class BrandsList extends StatefulWidget {
+class BrandsList extends StatelessWidget {
   const BrandsList({Key? key}) : super(key: key);
-
-  @override
-  State<BrandsList> createState() => _BrandsListState();
-}
-
-class _BrandsListState extends State<BrandsList> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<TopBrandsBloc>().add(TopBranchFetch());
-  }
 
   @override
   Widget build(BuildContext context) {

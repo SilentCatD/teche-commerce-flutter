@@ -44,6 +44,10 @@ dependencies:
   # Flutter Bloc pattern
   flutter_bloc: ^8.0.1
 
+  # Create fade image network transition
+  transparent_image: ^2.0.0
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

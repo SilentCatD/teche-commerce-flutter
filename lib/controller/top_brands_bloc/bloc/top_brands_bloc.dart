@@ -13,12 +13,12 @@ class TopBrandsBloc extends Bloc<TopBrandsEvent, TopBrandsState> {
       : super(TopBrandsInitial()) {
     _dataRepository = dataRepository;
 
-    on<TopBranchFetch>(_fetchTopBrands);
+    on<TopBrandsFetch>(_onTopBrandsFetch);
   }
 
   late final DataRepository _dataRepository;
 
-  void _fetchTopBrands(TopBranchFetch event, Emitter emit) async {
+  void _onTopBrandsFetch(TopBrandsFetch event, Emitter emit) async {
     emit(TopBrandsFetching());
     try {
       final brands = await _dataRepository.fetchTopBrands();

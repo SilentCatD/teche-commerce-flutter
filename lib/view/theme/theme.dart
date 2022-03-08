@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme {
   static ThemeData get lightTheme {
     return ThemeData(
+      canvasColor: Colors.white,
       primaryColor: const Color.fromRGBO(4, 4, 3, 1),
       colorScheme: const ColorScheme.light().copyWith(
         primary: const Color.fromRGBO(4, 4, 3, 1),

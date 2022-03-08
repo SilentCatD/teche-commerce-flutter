@@ -8,7 +8,7 @@ import 'package:teche_commerce/view/home_screen/home_screen.dart';
 
 class ScreenSwitcher extends StatelessWidget {
   const ScreenSwitcher({Key? key}) : super(key: key);
-  final screens = const [
+  final _screens = const [
     HomeScreen(),
     FavoriteScreen(),
     NotificationsScreen(),
@@ -19,7 +19,10 @@ class ScreenSwitcher extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationCubit, int>(
       builder: (context, state) {
-        return screens[state];
+        return IndexedStack(
+          index: state,
+          children: _screens,
+        );
       },
     );
   }

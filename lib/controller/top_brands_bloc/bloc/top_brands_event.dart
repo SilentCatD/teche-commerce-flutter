@@ -4,7 +4,7 @@ abstract class TopBrandsEvent extends Equatable {
   const TopBrandsEvent();
 }
 
-class TopBranchFetch extends TopBrandsEvent {
+class TopBrandsFetch extends TopBrandsEvent {
   @override
   List<Object?> get props => [];
 }

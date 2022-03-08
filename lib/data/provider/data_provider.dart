@@ -5,4 +5,9 @@ class DataProvider {
     await Future.delayed(const Duration(milliseconds: 2000));
     return topBrands;
   }
+
+  Future<List<Map<String, dynamic>>> fetchHighLightProduct() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    return productsByBrand;
+  }
 }

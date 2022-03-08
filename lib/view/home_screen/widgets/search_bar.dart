@@ -14,6 +14,7 @@ class SearchBar extends StatelessWidget {
       ),
       child: TextField(
         onSubmitted: (query) {},
+        textInputAction: TextInputAction.search,
         decoration: const InputDecoration(
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,
