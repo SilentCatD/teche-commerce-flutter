@@ -28,19 +28,31 @@ class CategoryProductSection extends StatelessWidget {
           text: category.name,
           onPress: () {},
         ),
-        GridView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 200 / 250,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
+        // GridView.builder(
+        //   physics: const NeverScrollableScrollPhysics(),
+        //   shrinkWrap: true,
+        //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        //     crossAxisCount: 2,
+        //     childAspectRatio: 200 / 250,
+        //     mainAxisSpacing: 10,
+        //     crossAxisSpacing: 10,
+        //   ),
+        //   itemCount: products.length,
+        //   itemBuilder: (BuildContext context, int index) {
+        //     return ProductCard(product: products[index]);
+        //   },
+        // ),
+        SizedBox(
+          height: 250,
+          child: ListView.builder(
+            // physics: const NeverScrollableScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) {
+              return ProductCard(product: products[index]);
+            },
+            itemCount: products.length,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
           ),
-          itemCount: products.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ProductCard(product: products[index]);
-          },
         ),
       ],
     );
