@@ -15,7 +15,15 @@ class CategoryProductSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 20,),
+        const SizedBox(
+          height: 20,
+        ),
+        Divider(
+          color: Theme.of(context).primaryColor,
+          thickness: 0.5,
+          indent: 50,
+          endIndent: 50,
+        ),
         TitleText(
           text: category.name,
           onPress: () {},
@@ -23,9 +31,9 @@ class CategoryProductSection extends StatelessWidget {
         GridView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
-          gridDelegate:  const SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 200/250,
+            childAspectRatio: 200 / 250,
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,
           ),
