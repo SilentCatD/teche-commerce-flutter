@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teche_commerce/controller/highlight_product_bloc/highlight_product_bloc.dart';
+import 'package:teche_commerce/controller/switch_view_bloc/switch_view_bloc.dart';
 import 'package:teche_commerce/controller/top_brands_bloc/top_branch_bloc.dart';
 import 'package:teche_commerce/data/repository/data_repository.dart';
-import 'package:teche_commerce/view/commons/cart_button/cart_button.dart';
+import 'package:teche_commerce/view/home_screen/widgets/app_bar_with_search_box/app_bar_with_search_box.dart';
 import 'package:teche_commerce/view/home_screen/widgets/highlight_product_section/highlight_product_section.dart';
-import 'package:teche_commerce/view/home_screen/widgets/search_bar.dart';
 import 'package:teche_commerce/view/home_screen/widgets/top_brands_section/top_brands_section.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,6 +24,7 @@ class HomeScreen extends StatelessWidget {
             HighlightProductBloc(dataRepository: context.read<DataRepository>())
               ..add(HighLightProductFetch()),
       ),
+      BlocProvider(create: (context) => SwitchViewCubit()),
     ], child: const HomeScreenView());
   }
 }
@@ -33,27 +34,22 @@ class HomeScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appBar = AppBarWithSearchBox(appBar: AppBar());
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const SearchBar(),
-        actions: const [
-          CartButton(),
-        ],
-      ),
-      body: Container(
-        margin: const EdgeInsets.only(top: 15),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
+      appBar: appBar,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                TopBrandsSection(),
-                HighLightProductSection(),
+              children: [
+                const TopBrandsSection(),
+                HighLightProductSection(
+                  appBarHeight: appBar.preferredSize.height,
+                ),
               ],
             ),
-          ),
+          ],
         ),
       ),
     );

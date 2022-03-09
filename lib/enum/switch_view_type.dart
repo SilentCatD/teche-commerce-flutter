@@ -1,0 +1,4 @@
+enum SwitchViewType{
+  listView,
+  gridView,
+}

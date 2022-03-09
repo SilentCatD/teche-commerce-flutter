@@ -1,4 +1,4 @@
-import 'package:teche_commerce/data/enum/sold_status.dart';
+import 'package:teche_commerce/enum/sold_status.dart';
 import 'package:teche_commerce/data/model/brand.dart';
 import 'package:teche_commerce/data/model/category.dart';
 

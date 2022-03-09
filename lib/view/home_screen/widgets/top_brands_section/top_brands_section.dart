@@ -5,6 +5,7 @@ import '../title_text.dart';
 
 class TopBrandsSection extends StatefulWidget {
   const TopBrandsSection({Key? key}) : super(key: key);
+  static const double sectionHeight = 200;
 
   @override
   State<TopBrandsSection> createState() => _TopBrandsSectionState();
@@ -13,13 +14,19 @@ class TopBrandsSection extends StatefulWidget {
 class _TopBrandsSectionState extends State<TopBrandsSection> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children:  [
-        TitleText(text: "Top brands", onPress: (){},),
-        const SizedBox(height: 20),
-        const BrandsList(),
-      ],
+    return SizedBox(
+      height: TopBrandsSection.sectionHeight,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children:  [
+            TitleText(text: "Top brands", onPress: (){},),
+            const SizedBox(height: 20),
+            const BrandsList(),
+          ],
+        ),
+      ),
     );
   }
 }

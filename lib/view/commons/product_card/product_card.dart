@@ -6,12 +6,14 @@ class ProductCard extends StatelessWidget {
   const ProductCard({Key? key, required this.product}) : super(key: key);
   final Product product;
 
+  static const double cardHeight = 250;
+  static const double  cardWidth = 200;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 250,
-      width: MediaQuery.of(context).size.width * 0.5,
-      constraints: const BoxConstraints(maxWidth: 200),
+    return SizedBox(
+      height: ProductCard.cardHeight,
+      width: ProductCard.cardWidth,
       child: InkWell(
         onTap: (){},
         child: Card(

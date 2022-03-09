@@ -5,21 +5,26 @@ import 'package:teche_commerce/view/main_navigator/widgets/padding_button.dart';
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({Key? key}) : super(key: key);
 
+  static const double bottomNavBarHeight = 50;
+
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
       notchMargin: 8,
       child: IconTheme(
         data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: const [
-            NavigationButton( icon: Icon(Icons.home), index: 0),
-            NavigationButton(icon: Icon(Icons.favorite), index: 1),
-            PaddingButton(),
-            NavigationButton(icon: Icon(Icons.notifications), index: 2),
-            NavigationButton(icon: Icon(Icons.account_circle), index: 3),
-          ],
+        child: SizedBox(
+          height: BottomNavBar.bottomNavBarHeight,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: const [
+              NavigationButton( icon: Icon(Icons.home), index: 0),
+              NavigationButton(icon: Icon(Icons.favorite), index: 1),
+              PaddingButton(),
+              NavigationButton(icon: Icon(Icons.notifications), index: 2),
+              NavigationButton(icon: Icon(Icons.account_circle), index: 3),
+            ],
+          ),
         ),
       ),
     );

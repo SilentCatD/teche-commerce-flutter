@@ -15,5 +15,6 @@ void main() async {
       () => runApp(App(
             router: router,
           )),
-      blocObserver: appBlocObserver);
+      blocObserver: appBlocObserver,
+  );
 }
