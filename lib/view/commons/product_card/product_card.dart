@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teche_commerce/data/model/product.dart';
+import 'package:teche_commerce/view/product_screen/product_screen.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ProductCard extends StatelessWidget {
@@ -7,7 +8,7 @@ class ProductCard extends StatelessWidget {
   final Product product;
 
   static const double cardHeight = 250;
-  static const double  cardWidth = 200;
+  static const double cardWidth = 200;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,9 @@ class ProductCard extends StatelessWidget {
       height: ProductCard.cardHeight,
       width: ProductCard.cardWidth,
       child: InkWell(
-        onTap: (){},
+        onTap: () {
+         Navigator.of(context).pushNamed(ProductScreen.pageRoute, arguments: product.id);
+        },
         child: Card(
           elevation: 4,
           child: LayoutBuilder(
@@ -28,11 +31,15 @@ class ProductCard extends StatelessWidget {
                   Center(
                     child: SizedBox(
                       height: maxHeight * 0.7,
-                      child: FadeInImage.memoryNetwork(
-                        placeholder: kTransparentImage,
-                        image: product.variants[0].imgUrl!,
-                        fit: BoxFit.fill,
-                      ),
+                      child: product.variants != null
+                          ? FadeInImage.memoryNetwork(
+                              placeholder: kTransparentImage,
+                              image: product.variants![0].imgUrl!,
+                              fit: BoxFit.fill,
+                            )
+                          : Container(
+                              color: Colors.grey,
+                            ),
                     ),
                   ),
                   Container(

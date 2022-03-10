@@ -10,4 +10,9 @@ class DataProvider {
     await Future.delayed(const Duration(milliseconds: 500));
     return productsByBrand;
   }
+
+  Future <Map<String, dynamic>> fetchProduct(String id) async {
+    await Future.delayed(const Duration(milliseconds: 500));
+    return tempProduct;
+}
 }

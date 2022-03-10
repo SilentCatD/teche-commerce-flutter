@@ -47,6 +47,9 @@ dependencies:
   # Create fade image network transition
   transparent_image: ^2.0.0
 
+  # For carousel images view
+  carousel_slider: ^4.0.0
+
 
 dev_dependencies:
   flutter_test:

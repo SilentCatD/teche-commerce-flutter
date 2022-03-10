@@ -22,7 +22,7 @@ class HighlightProductBloc
       HighLightProductFetch event, Emitter emit) async {
     emit(HighlightProductLoading());
     try {
-      final data = await _dataRepository.fetchHighLightProduct();
+      final data = await _dataRepository.fetchHighLightProducts();
       emit(HighlightProductLoaded(data));
     } catch (e) {
       emit(HighlightProductError());

@@ -20,20 +20,23 @@ class Product {
   late final String id;
   late final String name;
   late final double price;
-  late final String detail;
-  late final SoldStatus status;
-  late final Brand brand;
-  late final Category category;
   late final double rate;
-  late final int buyCount;
-  late final int viewCount;
-  late final List<Variant> variants;
+  late final Category category;
+
+  List<Variant>? variants;
+  String? detail;
+  SoldStatus? status;
+  Brand? brand;
+  int? buyCount;
+  int? viewCount;
 
   Product.fromJSON(Map<String, dynamic> data) {
     id = data['id'];
     name = data['name'];
     price = data['price'];
     detail = data['detail'];
+    rate = data['rate'];
+
     if (data['status'] == 'in-stock') {
       status = SoldStatus.inStock;
     } else if (data['status'] == 'sold-out') {
@@ -41,7 +44,6 @@ class Product {
     }
     brand = Brand.fromJSON(data['brand']);
     category = Category.fromJSON(data['category']);
-    rate = data['rate'];
     buyCount = data['buyCount'];
     viewCount = data['viewCount'];
     final List<Map<String, dynamic>> variantsData = data['variants'];
@@ -54,12 +56,14 @@ class Product {
     required this.name,
     required this.price,
     required this.detail,
-    required this.status,
-    required this.category,
-    required this.brand,
-    required this.buyCount,
     required this.rate,
-    required this.viewCount,
-    required this.variants,
+    required this.category,
+
+
+    this.status,
+    this.brand,
+    this.buyCount,
+    this.viewCount,
+    this.variants,
   });
 }

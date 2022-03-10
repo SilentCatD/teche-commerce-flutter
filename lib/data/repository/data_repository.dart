@@ -20,7 +20,8 @@ class DataRepository {
     }
   }
 
-  Future<List<Map<String, dynamic>>> fetchHighLightProduct() async {
+
+  Future<List<Map<String, dynamic>>> fetchHighLightProducts() async {
     try {
       final products = await dataProvider.fetchHighLightProduct();
       return products.map((data) {
@@ -35,6 +36,14 @@ class DataRepository {
         };
       }).toList();
     } catch (e) {
+      rethrow;
+    }
+  }
+  Future<Product> fetchProduct(String id)async {
+    try{
+      final productData = await dataProvider.fetchProduct(id);
+      return Product.fromJSON(productData);
+    }catch (e){
       rethrow;
     }
   }

@@ -45,6 +45,12 @@ final tempProduct = {
       "hexColor": "FFC0CB",
       "imgUrl":
           "https://img.joomcdn.net/dcd805dd291208c7aae03d119b5a9d4717ff4f5c_original.jpeg",
+    },
+    {
+      "name": "pink",
+      "hexColor": "FFC0CB",
+      "imgUrl":
+      "https://img.joomcdn.net/dcd805dd291208c7aae03d119b5a9d4717ff4f5c_original.jpeg",
     }
   ],
 };
