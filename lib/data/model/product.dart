@@ -1,69 +1,57 @@
-import 'package:teche_commerce/enum/sold_status.dart';
 import 'package:teche_commerce/data/model/brand.dart';
 import 'package:teche_commerce/data/model/category.dart';
-
-class Variant {
-  late final String name;
-  late final String hexColor;
-  String? imgUrl;
-
-  Variant({required this.name, required this.hexColor, this.imgUrl});
-
-  Variant.fromJson(Map<String, dynamic> data) {
-    name = data['name'];
-    hexColor = data['hexColor'];
-    imgUrl = data['imgUrl'];
-  }
-}
+import 'package:teche_commerce/enum/sold_status.dart';
 
 class Product {
   late final String id;
   late final String name;
   late final double price;
   late final double rate;
-  late final Category category;
-
-  List<Variant>? variants;
-  String? detail;
-  SoldStatus? status;
+  late final List<String> imageUrls;
+  late final String detail;
+  late final SoldStatus status;
+  late final int buyCount;
+  late final int viewCount;
+  Category? category;
   Brand? brand;
-  int? buyCount;
-  int? viewCount;
 
   Product.fromJSON(Map<String, dynamic> data) {
     id = data['id'];
     name = data['name'];
     price = data['price'];
-    detail = data['detail'];
     rate = data['rate'];
-
-    if (data['status'] == 'in-stock') {
-      status = SoldStatus.inStock;
-    } else if (data['status'] == 'sold-out') {
-      status = SoldStatus.soldOut;
+    imageUrls = data['images'];
+    detail = data['details'];
+    SoldStatus soldStatus;
+    if(data['status'] == 'sold-out'){
+      soldStatus = SoldStatus.soldOut;
+    }else if(data['status'] == 'in-stock'){
+      soldStatus = SoldStatus.inStock;
+    }else{
+      throw Exception("Can't fetch Sold status, check server");
     }
-    brand = Brand.fromJSON(data['brand']);
-    category = Category.fromJSON(data['category']);
+    status = soldStatus;
+    if(data['brand'] != null){
+      brand = Brand.fromJSON(data['brand']);
+    }
+    if(data['category'] != null){
+      category = Category.fromJSON(data['category']);
+    }
     buyCount = data['buyCount'];
     viewCount = data['viewCount'];
-    final List<Map<String, dynamic>> variantsData = data['variants'];
-    variants =
-        variantsData.map((variant) => Variant.fromJson(variant)).toList();
   }
 
   Product({
     required this.id,
     required this.name,
     required this.price,
-    required this.detail,
     required this.rate,
-    required this.category,
-
-
-    this.status,
+    required this.imageUrls,
+    required this.detail,
+    required this.status,
+    required this.buyCount,
+    required this.viewCount,
+    this.category,
     this.brand,
-    this.buyCount,
-    this.viewCount,
-    this.variants,
   });
 }

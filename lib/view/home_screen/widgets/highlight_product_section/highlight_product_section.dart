@@ -51,7 +51,9 @@ class HighLightProductSection extends StatelessWidget {
             ],
           );
         }
-        return const Center(child: Text("Something went wrong"));
+        return SizedBox(
+            height: remainingHeight,
+            child: const Center(child: Text("Something went wrong")));
       },
     );
   }

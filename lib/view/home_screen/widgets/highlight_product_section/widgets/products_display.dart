@@ -18,7 +18,7 @@ class ProductsDisplay extends StatelessWidget {
           shrinkWrap: true,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 200 / 250,
+            childAspectRatio: ProductCard.cardWidth / ProductCard.cardHeight,
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,
           ),

@@ -31,11 +31,11 @@ class ProductCard extends StatelessWidget {
                   Center(
                     child: SizedBox(
                       height: maxHeight * 0.7,
-                      child: product.variants != null
-                          ? FadeInImage.memoryNetwork(
+                      child: product.imageUrls.isNotEmpty ?
+                           FadeInImage.memoryNetwork(
                               placeholder: kTransparentImage,
-                              image: product.variants![0].imgUrl!,
-                              fit: BoxFit.fill,
+                              image: product.imageUrls[0],
+                              fit: BoxFit.cover,
                             )
                           : Container(
                               color: Colors.grey,

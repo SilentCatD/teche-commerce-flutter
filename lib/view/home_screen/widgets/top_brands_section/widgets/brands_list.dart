@@ -11,12 +11,9 @@ class BrandsList extends StatelessWidget {
     return BlocBuilder<TopBrandsBloc, TopBrandsState>(
       builder: (context, state) {
         if (state is TopBrandsFetching || state is TopBrandsInitial) {
-          return const Center(
-            child: SizedBox(
-              width: 200,
-              height: 100,
-              child: Center(child: CircularProgressIndicator()),
-            ),
+          return  const SizedBox(
+            height: BrandItem.itemHeight,
+            child: Center(child: CircularProgressIndicator()),
           );
         }
         if (state is TopBrandsFetched) {
@@ -33,8 +30,11 @@ class BrandsList extends StatelessWidget {
             ),
           );
         }
-        return const Center(
-          child: Text("Something went wrong"),
+        return  const SizedBox(
+          height: BrandItem.itemHeight,
+          child: Center(
+            child: Text("Something went wrong"),
+          ),
         );
       },
     );

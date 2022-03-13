@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:teche_commerce/controller/product_bloc/product_bloc.dart';
 import 'package:teche_commerce/view/product_screen/widgets/carousel.dart';
 
 import '../../../data/model/product.dart';
@@ -12,7 +13,9 @@ class ScreenElements extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return RefreshIndicator(
-      onRefresh: () async {},
+      onRefresh: () async {
+        context.read<ProductBloc>().add(FetchProduct());
+      },
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Stack(
@@ -21,8 +24,13 @@ class ScreenElements extends StatelessWidget {
               height: size.height,
             ),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                  Carousel(variants: product.variants),
+                  Carousel(imageUrls: product.imageUrls),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(product.name),
+                  ),
               ],
             ),
           ],

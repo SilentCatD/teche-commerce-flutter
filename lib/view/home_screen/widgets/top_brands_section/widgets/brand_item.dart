@@ -5,8 +5,8 @@ import 'package:transparent_image/transparent_image.dart';
 class BrandItem extends StatelessWidget {
   const BrandItem({Key? key, required this.brand}) : super(key: key);
   final Brand brand;
-  final double itemWidth = 200;
-  final double itemHeight = 100;
+  static const  double itemWidth = 200;
+  static const double itemHeight = 100;
 
   @override
   Widget build(BuildContext context) {
