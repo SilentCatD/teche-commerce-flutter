@@ -24,9 +24,10 @@ final topBrands = [
 
 final tempProduct = {
   "id": "1",
-  "name": "Headphone 9000000",
-  "price": 25.0,
+  "name": "Headphone Very expensive 2000 Hello It's me",
+  "price": 25,
   "rate": 4.6,
+  'rateCount': 235,
   "images": [
     "https://i.pcmag.com/imagery/roundups/063BUF2XoLMtmoynofL3fKy-30.fit_lim.size_1200x630.v1634585399.jpg",
     "https://img.joomcdn.net/dcd805dd291208c7aae03d119b5a9d4717ff4f5c_original.jpeg",

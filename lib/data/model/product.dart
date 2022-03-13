@@ -8,33 +8,35 @@ class Product {
   late final double price;
   late final double rate;
   late final List<String> imageUrls;
-  late final String detail;
+  late final String details;
   late final SoldStatus status;
   late final int buyCount;
   late final int viewCount;
+  late final int rateCount;
   Category? category;
   Brand? brand;
 
   Product.fromJSON(Map<String, dynamic> data) {
     id = data['id'];
     name = data['name'];
-    price = data['price'];
+    price = data['price'].toDouble();
     rate = data['rate'];
+    rateCount = data['rateCount'];
     imageUrls = data['images'];
-    detail = data['details'];
+    details = data['details'];
     SoldStatus soldStatus;
-    if(data['status'] == 'sold-out'){
+    if (data['status'] == 'sold-out') {
       soldStatus = SoldStatus.soldOut;
-    }else if(data['status'] == 'in-stock'){
+    } else if (data['status'] == 'in-stock') {
       soldStatus = SoldStatus.inStock;
-    }else{
+    } else {
       throw Exception("Can't fetch Sold status, check server");
     }
     status = soldStatus;
-    if(data['brand'] != null){
+    if (data['brand'] != null) {
       brand = Brand.fromJSON(data['brand']);
     }
-    if(data['category'] != null){
+    if (data['category'] != null) {
       category = Category.fromJSON(data['category']);
     }
     buyCount = data['buyCount'];
@@ -46,8 +48,9 @@ class Product {
     required this.name,
     required this.price,
     required this.rate,
+    required this.rateCount,
     required this.imageUrls,
-    required this.detail,
+    required this.details,
     required this.status,
     required this.buyCount,
     required this.viewCount,

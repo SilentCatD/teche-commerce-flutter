@@ -39,7 +39,7 @@ class DataRepository {
       rethrow;
     }
   }
-  Future<Product> fetchProduct(String id)async {
+  Future<Product> fetchProduct(String id) async {
     try{
       final productData = await dataProvider.fetchProduct(id);
       return Product.fromJSON(productData);

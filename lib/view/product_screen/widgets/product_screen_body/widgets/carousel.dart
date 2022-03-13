@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teche_commerce/controller/carousel_indicator_bloc/carousel_indicator_bloc.dart';
 import 'package:teche_commerce/view/carousel_screen/carousel_screen.dart';
-import 'package:teche_commerce/view/product_screen/widgets/carousel_indicator.dart';
+import './carousel_indicator.dart';
 
 class Carousel extends StatelessWidget {
   const Carousel({Key? key, required this.imageUrls}) : super(key: key);

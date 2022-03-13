@@ -9,7 +9,6 @@ class CartButton extends StatelessWidget {
       margin: const EdgeInsets.only(right: 20),
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
-        color: Colors.black12,
       ),
       child: InkWell(
         onTap: () {},
@@ -18,7 +17,7 @@ class CartButton extends StatelessWidget {
           padding: const EdgeInsets.all(10.0),
           child: Icon(
             Icons.add_shopping_cart,
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
       ),

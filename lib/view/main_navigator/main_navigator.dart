@@ -8,6 +8,7 @@ class MainNavigator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       resizeToAvoidBottomInset: false,
       body: const ScreenSwitcher(),
       floatingActionButton: FloatingActionButton(
