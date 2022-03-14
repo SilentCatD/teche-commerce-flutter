@@ -73,7 +73,7 @@ class ProductCard extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "⭐${product.rate.toString()}",
+                              "⭐${product.rateAverage.toString()}",
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,

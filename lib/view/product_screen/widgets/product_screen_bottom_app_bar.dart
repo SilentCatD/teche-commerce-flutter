@@ -45,14 +45,15 @@ class ProductScreenBottomAppBar extends StatelessWidget {
                     ),
                     onPressed: () {},
                     child: const SizedBox(
-                        height: 55,
-                        child: Center(
-                          child: Text(
-                            "Add to Cart",
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                        )),
+                      height: 55,
+                      child: Center(
+                        child: Text(
+                          "Add to Cart",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),

@@ -36,7 +36,6 @@ dependencies:
   # equatable package for bloc pattern
   equatable: ^2.0.3
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -49,6 +48,9 @@ dependencies:
 
   # For carousel images view
   carousel_slider: ^4.0.0
+
+  # Rating star indicator
+  flutter_rating_bar: ^4.0.0
 
 
 dev_dependencies:

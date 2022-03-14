@@ -43,7 +43,7 @@ class ProductScreenBody extends StatelessWidget {
                         viewCount: product.viewCount,
                         buyCount: product.buyCount,
                         rateCount: product.rateCount,
-                        rate: product.rate,
+                        rate: product.rateAverage,
                         price: product.price,
                       ),
                       const Divider(

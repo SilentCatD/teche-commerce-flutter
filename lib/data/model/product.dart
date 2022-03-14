@@ -6,13 +6,14 @@ class Product {
   late final String id;
   late final String name;
   late final double price;
-  late final double rate;
+  late final double rateAverage;
   late final List<String> imageUrls;
   late final String details;
   late final SoldStatus status;
   late final int buyCount;
   late final int viewCount;
   late final int rateCount;
+  late final List<int> rates;
   Category? category;
   Brand? brand;
 
@@ -20,10 +21,11 @@ class Product {
     id = data['id'];
     name = data['name'];
     price = data['price'].toDouble();
-    rate = data['rate'];
+    rateAverage = data['rateAverage'];
     rateCount = data['rateCount'];
     imageUrls = data['images'];
     details = data['details'];
+    rates =data['rates'];
     SoldStatus soldStatus;
     if (data['status'] == 'sold-out') {
       soldStatus = SoldStatus.soldOut;
@@ -47,13 +49,14 @@ class Product {
     required this.id,
     required this.name,
     required this.price,
-    required this.rate,
+    required this.rateAverage,
     required this.rateCount,
     required this.imageUrls,
     required this.details,
     required this.status,
     required this.buyCount,
     required this.viewCount,
+    required this.rates,
     this.category,
     this.brand,
   });
