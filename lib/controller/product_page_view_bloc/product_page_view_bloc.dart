@@ -1,0 +1,1 @@
+export './bloc/product_page_view_cubit.dart';

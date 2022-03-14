@@ -6,15 +6,15 @@ import 'package:teche_commerce/data/repository/data_repository.dart';
 
 import '../../../data/model/product.dart';
 
-part 'product_event.dart';
-part 'product_state.dart';
+part 'product_info_event.dart';
+part 'product_info_state.dart';
 
-class ProductBloc extends Bloc<ProductEvent, ProductState> {
+class ProductInfoBloc extends Bloc<ProductEvent, ProductState> {
 
   late final DataRepository _dataRepository;
   late final String _productId;
 
-  ProductBloc({required DataRepository dataRepository, required String productId}) : super(ProductInitial()) {
+  ProductInfoBloc({required DataRepository dataRepository, required String productId}) : super(ProductInitial()) {
     _dataRepository = dataRepository;
     _productId = productId;
     on<FetchProduct>(_onFetchProduct);

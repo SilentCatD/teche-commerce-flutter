@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../enum/sold_status.dart';
+import '../../../../../../../enum/sold_status.dart';
+
+
 
 class ProductStatus extends StatelessWidget {
   const ProductStatus({Key? key, required this.status}) : super(key: key);

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teche_commerce/controller/navigation_bloc/navigation_bloc.dart';
-import 'package:teche_commerce/controller/product_bloc/bloc/product_bloc.dart';
+import 'package:teche_commerce/controller/product_bloc/bloc/product_info_bloc.dart';
+import 'package:teche_commerce/controller/product_page_view_bloc/product_page_view_bloc.dart';
 import 'package:teche_commerce/data/provider/data_provider.dart';
 import 'package:teche_commerce/data/repository/data_repository.dart';
 import 'package:teche_commerce/view/main_navigator/main_navigator.dart';
@@ -11,7 +12,7 @@ class AppRouter {
   late final NavigationCubit _navigationCubit;
   late final DataProvider _dataProvider;
   late final DataRepository _dataRepository;
-  late final ProductBloc _productBloc;
+  late final ProductInfoBloc _productBloc;
 
   AppRouter() {
     _navigationCubit = NavigationCubit();
@@ -35,9 +36,15 @@ class AppRouter {
         );
       case ProductScreen.pageRoute:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => ProductBloc(dataRepository: _dataRepository, productId: settings.arguments! as String)
-              ..add(FetchProduct()),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                  create: (context) => ProductInfoBloc(
+                      dataRepository: _dataRepository,
+                      productId: settings.arguments! as String)
+                    ..add(FetchProduct())),
+              BlocProvider(create: (context) => ProductPageViewCubit()),
+            ],
             child: const ProductScreen(),
           ),
         );
