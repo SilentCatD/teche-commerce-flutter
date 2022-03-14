@@ -17,9 +17,6 @@ class CategoryProductSection extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          const SizedBox(
-            height: 20,
-          ),
           TitleText(
             text: category.name,
             onPress: () {},

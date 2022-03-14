@@ -37,19 +37,29 @@ class HomeScreenView extends StatelessWidget {
     final appBar = AppBarWithSearchBox(appBar: AppBar());
     return Scaffold(
       appBar: appBar,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const TopBrandsSection(),
-                HighLightProductSection(
-                  appBarHeight: appBar.preferredSize.height,
-                ),
-              ],
-            ),
-          ],
+      body: RefreshIndicator(
+        onRefresh: () async {
+          context.read<TopBrandsBloc>().add(TopBrandsFetch());
+          context.read<HighlightProductBloc>().add(HighLightProductFetch());
+        },
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: Column(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const TopBrandsSection(),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  HighLightProductSection(
+                    appBarHeight: appBar.preferredSize.height,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

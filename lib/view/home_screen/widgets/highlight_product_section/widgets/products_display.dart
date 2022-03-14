@@ -13,14 +13,14 @@ class ProductsDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SwitchViewCubit, SwitchViewType>(builder: (context, state){
       if (state == SwitchViewType.gridView){
-        return  GridView.builder(
+        return GridView.builder(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: ProductCard.cardWidth / ProductCard.cardHeight,
-            mainAxisSpacing: 10,
-            crossAxisSpacing: 10,
+            mainAxisSpacing: 5,
+            crossAxisSpacing: 5,
           ),
           itemCount: products.length,
           itemBuilder: (BuildContext context, int index) {
