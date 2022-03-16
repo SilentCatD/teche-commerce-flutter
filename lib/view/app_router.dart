@@ -24,29 +24,35 @@ class AppRouter {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
-          builder: (_) => RepositoryProvider(
-            create: (context) => _dataRepository,
-            child: MultiBlocProvider(
-              providers: [
-                BlocProvider.value(value: _navigationCubit),
-              ],
-              child: const MainNavigator(),
-            ),
-          ),
+          builder: (_) =>
+              RepositoryProvider(
+                create: (context) => _dataRepository,
+                child: MultiBlocProvider(
+                  providers: [
+                    BlocProvider.value(value: _navigationCubit),
+                  ],
+                  child: const MainNavigator(),
+                ),
+              ),
         );
       case ProductScreen.pageRoute:
         return MaterialPageRoute(
-          builder: (_) => MultiBlocProvider(
-            providers: [
-              BlocProvider(
-                  create: (context) => ProductInfoBloc(
-                      dataRepository: _dataRepository,
-                      productId: settings.arguments! as String)
-                    ..add(FetchProduct())),
-              BlocProvider(create: (context) => ProductPageViewCubit()),
-            ],
-            child: const ProductScreen(),
-          ),
+          builder: (_) =>
+              RepositoryProvider(
+                create: (context) => _dataRepository,
+                child: MultiBlocProvider(
+                  providers: [
+                    BlocProvider(
+                        create: (context) =>
+                        ProductInfoBloc(
+                            dataRepository: _dataRepository,
+                            productId: settings.arguments! as String)
+                          ..add(FetchProduct())),
+                    BlocProvider(create: (context) => ProductPageViewCubit()),
+                  ],
+                  child: const ProductScreen(),
+                ),
+              ),
         );
       default:
         return null;

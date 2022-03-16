@@ -9,47 +9,46 @@ class RateSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return BlocBuilder<ProductInfoBloc, ProductState>(
       builder: (context, state) {
         if (state is ProductLoading || state is ProductInitial) {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return const SizedBox(
+            height: 300,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
           );
         } else if (state is ProductLoaded) {
-          return Stack(
-            children: [
-              Container(
-                height: size.height * 0.5,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    HeaderInfo(
-                      rateAverage: state.product.rateAverage,
-                      rateCount: state.product.rateCount,
-                    ),
-                    const SizedBox(height: 20,),
-                    ...state.product.rates
-                        .asMap()
-                        .map((index, rate) => MapEntry(
-                            index,
-                            RateDetailsTile(
-                              rates: rate,
-                              rateCount: state.product.rateCount,
-                              star: index + 1,
-                            )))
-                        .values
-                        .toList().reversed,
-                  ],
+          return Container(
+            height: 300,
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                HeaderInfo(
+                  rateAverage: state.product.rateAverage,
+                  rateCount: state.product.rateCount,
                 ),
-              )
-            ],
+                const SizedBox(height: 20,),
+                ...state.product.rates
+                    .asMap()
+                    .map((index, rate) => MapEntry(
+                        index,
+                        RateDetailsTile(
+                          rates: rate,
+                          rateCount: state.product.rateCount,
+                          star: index + 1,
+                        )))
+                    .values
+                    .toList().reversed,
+              ],
+            ),
           );
         } else {
-          return const Center(
-            child: Text("Something went wrong"),
+          return const SizedBox(
+            height: 300,
+            child: Center(
+              child: Text("Something went wrong"),
+            ),
           );
         }
       },

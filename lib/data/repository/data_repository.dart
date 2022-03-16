@@ -1,4 +1,5 @@
 import 'package:teche_commerce/data/model/brand.dart';
+import 'package:teche_commerce/data/model/comment.dart';
 import 'package:teche_commerce/data/model/product.dart';
 import 'package:teche_commerce/data/provider/data_provider.dart';
 
@@ -20,7 +21,6 @@ class DataRepository {
     }
   }
 
-
   Future<List<Map<String, dynamic>>> fetchHighLightProducts() async {
     try {
       final products = await dataProvider.fetchHighLightProduct();
@@ -39,11 +39,47 @@ class DataRepository {
       rethrow;
     }
   }
+
   Future<Product> fetchProduct(String id) async {
-    try{
+    try {
       final productData = await dataProvider.fetchProduct(id);
       return Product.fromJSON(productData);
-    }catch (e){
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Comment?> fetchOwnComment(String productId, String userId) async {
+    try {
+      final Map<String, dynamic>? commentData =
+          await dataProvider.fetchOwnComment(productId, userId);
+      if (commentData == null) {
+        return null;
+      }
+      return Comment.fromJSON(commentData);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> postComment(
+      String productId, String userId, String text, int rate) async {
+    try {
+      await dataProvider.postComment(productId, userId, text, rate);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<List<Comment>> fetchProductComment(
+      String productId, int start, int limit) async {
+    try {
+      final commentsData =
+          await dataProvider.fetchProductComments(productId, start, limit);
+      return commentsData
+          .map((commentData) => Comment.fromJSON(commentData))
+          .toList();
+    } catch (e) {
       rethrow;
     }
   }
