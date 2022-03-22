@@ -12,7 +12,6 @@ class CommentItem extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 15),
       child: Card(
         child: Container(
-          height: 150,
           decoration: BoxDecoration(border: Border.all(color: Theme.of(context).primaryColor..withOpacity(0.7))),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -54,11 +53,7 @@ class CommentItem extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Text(comment.text),
-                  ),
-                ),
+                Text(comment.text),
               ],
             ),
           ),

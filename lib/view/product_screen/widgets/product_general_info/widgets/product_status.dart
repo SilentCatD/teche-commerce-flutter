@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../enum/sold_status.dart';
+import '../../../../../../enum/sold_status.dart';
 
 
 

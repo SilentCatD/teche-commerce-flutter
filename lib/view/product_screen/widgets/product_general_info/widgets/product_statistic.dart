@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teche_commerce/controller/product_page_view_bloc/bloc/product_page_view_cubit.dart';
 
 class ProductStatistic extends StatelessWidget {
   const ProductStatistic({
@@ -51,17 +49,11 @@ class ProductStatistic extends StatelessWidget {
                 const SizedBox(
                   width: 5,
                 ),
-                InkWell(
-                  onTap: (){
-                    context.read<ProductPageViewCubit>().switchPage(1);
-                  },
-                  child: Text(
-                    rateCount > 999 ? '(999+)' : '($rateCount)',
-                    style:  TextStyle(
-                      fontSize: 16,
-                      decoration: TextDecoration.underline,
-                      color: Colors.grey.shade700,
-                    ),
+                Text(
+                  rateCount > 999 ? '(999+)' : '($rateCount)',
+                  style:  TextStyle(
+                    fontSize: 16,
+                    color: Colors.grey.shade700,
                   ),
                 )
               ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:teche_commerce/controller/product_page_view_bloc/bloc/product_page_view_cubit.dart';
+import 'package:teche_commerce/controller/product_bloc/product_info_bloc.dart';
 import 'package:teche_commerce/view/product_screen/widgets/product_general_info/product_general_info.dart';
 import 'package:teche_commerce/view/product_screen/widgets/product_rating/product_rating.dart';
 
@@ -27,10 +27,7 @@ class _ProductScreenState extends State<ProductScreen> {
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
-          color: Theme
-              .of(context)
-              .colorScheme
-              .secondary,
+          color: Theme.of(context).colorScheme.secondary,
         ),
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -38,22 +35,29 @@ class _ProductScreenState extends State<ProductScreen> {
           CartButton(),
         ],
       ),
-      body: BlocListener<ProductPageViewCubit, int>(
-        listener: (context, state) {
-            _controller.animateToPage(
-                state, duration: const Duration(milliseconds: 100), curve: Curves.linear);
-
+      body: BlocBuilder<ProductInfoBloc, ProductState>(
+        builder: (context, state) {
+          if (state is ProductInitial || state is ProductLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is ProductLoaded) {
+            return PageView(
+              controller: _controller,
+              children: [
+                ProductGeneralInfo(
+                  product: state.product,
+                ),
+                ProductRating(product: state.product,),
+              ],
+            );
+          } else {
+            return const Center(
+              child: Text("Something went wrong"),
+            );
+          }
         },
-        child: PageView(
-          controller: _controller,
-          onPageChanged: (index){
-            context.read<ProductPageViewCubit>().switchPage(index);
-          },
-          children: const [
-            ProductGeneralInfo(),
-            ProductRating(),
-          ],
-        ),
       ),
     );
   }

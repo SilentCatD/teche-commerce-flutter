@@ -83,4 +83,6 @@ class DataRepository {
       rethrow;
     }
   }
+
+  void dispose() {}
 }

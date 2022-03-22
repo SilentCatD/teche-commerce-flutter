@@ -1,0 +1,9 @@
+export 'carousel.dart';
+export 'carousel_indicator.dart';
+export 'product_category_ink.dart';
+export 'product_category_ink.dart';
+export 'product_details.dart';
+export 'product_statistic.dart';
+export 'product_status.dart';
+export 'product_title.dart';
+export 'product_brand_ink.dart';

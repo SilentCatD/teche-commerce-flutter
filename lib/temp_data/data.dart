@@ -49,6 +49,8 @@ final tempProduct = {
   },
   "buyCount": 14123,
   "viewCount": 51232,
+  'inCart': false,
+  'inFavorite': false,
 };
 
 final listOfProd = [
@@ -86,7 +88,6 @@ final productsByBrand = [
   },
 ];
 
-
 final comment = {
   "productId": "1",
   "commentId": "2",
@@ -94,6 +95,8 @@ final comment = {
   "userName": "General Radahn",
   "rate": 4,
   "vote": 124,
-  "userAvatar": "https://eldenring.wiki.fextralife.com/file/Elden-Ring/starscourge_radahn_bosses_elden_ring_wiki_guide_300px.jpg",
-  "text": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
+  "userAvatar":
+      "https://eldenring.wiki.fextralife.com/file/Elden-Ring/starscourge_radahn_bosses_elden_ring_wiki_guide_300px.jpg",
+  "text":
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
 };

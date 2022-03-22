@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teche_commerce/controller/navigation_bloc/navigation_bloc.dart';
+import 'package:teche_commerce/controller/own_comment_bloc/bloc/own_comment_bloc.dart';
 import 'package:teche_commerce/controller/product_bloc/bloc/product_info_bloc.dart';
-import 'package:teche_commerce/controller/product_page_view_bloc/product_page_view_bloc.dart';
+import 'package:teche_commerce/controller/product_comment_bloc/bloc/product_comment_bloc.dart';
 import 'package:teche_commerce/data/provider/data_provider.dart';
 import 'package:teche_commerce/data/repository/data_repository.dart';
 import 'package:teche_commerce/view/main_navigator/main_navigator.dart';
@@ -12,7 +13,6 @@ class AppRouter {
   late final NavigationCubit _navigationCubit;
   late final DataProvider _dataProvider;
   late final DataRepository _dataRepository;
-  late final ProductInfoBloc _productBloc;
 
   AppRouter() {
     _navigationCubit = NavigationCubit();
@@ -24,35 +24,44 @@ class AppRouter {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
-          builder: (_) =>
-              RepositoryProvider(
-                create: (context) => _dataRepository,
-                child: MultiBlocProvider(
-                  providers: [
-                    BlocProvider.value(value: _navigationCubit),
-                  ],
-                  child: const MainNavigator(),
-                ),
-              ),
+          builder: (_) => RepositoryProvider(
+            create: (context) => _dataRepository,
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider.value(value: _navigationCubit),
+              ],
+              child: const MainNavigator(),
+            ),
+          ),
         );
       case ProductScreen.pageRoute:
+        final _productId = settings.arguments! as String;
+        final _productBloc = ProductInfoBloc(
+          dataRepository: _dataRepository,
+          productId: _productId,
+        );
+        final _ownCommentBloc = OwnCommentBloc(
+          dataRepository: _dataRepository,
+          productId: _productId,
+          productInfoBloc: _productBloc,
+        );
+        final _productCommentBloc = ProductCommentBloc(
+          dataRepository: _dataRepository,
+          productId: _productId,
+          productInfoBloc: _productBloc,
+        );
         return MaterialPageRoute(
-          builder: (_) =>
-              RepositoryProvider(
-                create: (context) => _dataRepository,
-                child: MultiBlocProvider(
-                  providers: [
-                    BlocProvider(
-                        create: (context) =>
-                        ProductInfoBloc(
-                            dataRepository: _dataRepository,
-                            productId: settings.arguments! as String)
-                          ..add(FetchProduct())),
-                    BlocProvider(create: (context) => ProductPageViewCubit()),
-                  ],
-                  child: const ProductScreen(),
-                ),
-              ),
+          builder: (_) => RepositoryProvider(
+            create: (context) => _dataRepository,
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider.value(value: _productBloc..add(FetchProduct())),
+                BlocProvider.value(value: _productCommentBloc),
+                BlocProvider.value(value: _ownCommentBloc),
+              ],
+              child: const ProductScreen(),
+            ),
+          ),
         );
       default:
         return null;
@@ -61,5 +70,6 @@ class AppRouter {
 
   void dispose() {
     _navigationCubit.close();
+    _dataRepository.dispose();
   }
 }

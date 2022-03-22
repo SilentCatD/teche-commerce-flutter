@@ -8,8 +8,7 @@ class OwnCommentDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
+    return Padding(
       padding: const EdgeInsets.all(20),
       child: Card(
         child: Container(
@@ -38,15 +37,11 @@ class OwnCommentDisplay extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SingleChildScrollView(
-                        child: Text(
-                          comment.text,
-                          style: const TextStyle(fontSize: 15),
-                        ),
-                      ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      comment.text,
+                      style: const TextStyle(fontSize: 15),
                     ),
                   ),
                 ],

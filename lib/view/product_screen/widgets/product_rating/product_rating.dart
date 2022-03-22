@@ -5,9 +5,11 @@ import 'package:teche_commerce/view/product_screen/widgets/product_rating/widget
 import 'package:teche_commerce/view/product_screen/widgets/product_rating/widgets/product_comment_section/product_comment_section.dart';
 import 'package:teche_commerce/view/product_screen/widgets/product_rating/widgets/rate_section/rate_section.dart';
 
+import '../../../../data/model/product.dart';
 
 class ProductRating extends StatelessWidget {
-  const ProductRating({Key? key}) : super(key: key);
+  const ProductRating({Key? key, required this.product}) : super(key: key);
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +20,11 @@ class ProductRating extends StatelessWidget {
       child: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
-          children: const [
-            RateSection(),
-            OwnCommentSection(),
+          children: [
+            RateSection(
+              product: product,
+            ),
+            const OwnCommentSection(),
             ProductCommentSection(),
           ],
         ),

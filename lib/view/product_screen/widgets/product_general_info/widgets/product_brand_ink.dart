@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../../data/model/brand.dart';
+import '../../../../../../data/model/brand.dart';
 
 
 

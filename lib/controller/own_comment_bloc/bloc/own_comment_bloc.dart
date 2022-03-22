@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:teche_commerce/controller/product_bloc/bloc/product_info_bloc.dart';
 import 'package:teche_commerce/data/model/comment.dart';
 import 'package:teche_commerce/data/repository/data_repository.dart';
 
@@ -10,14 +11,24 @@ part 'own_comment_state.dart';
 class OwnCommentBloc extends Bloc<OwnCommentEvent, OwnCommentState> {
   late final DataRepository _dataRepository;
   late final String _productId;
+  final ProductInfoBloc productInfoBloc;
 
   OwnCommentBloc(
-      {required DataRepository dataRepository, required String productId})
+      {required DataRepository dataRepository,
+      required String productId,
+      required this.productInfoBloc})
       : super(OwnCommentInitial()) {
     _dataRepository = dataRepository;
     _productId = productId;
     on<OwnCommentFetch>(_onOwnCommentFetch);
     on<OwnCommentSubmit>(_onOwnCommentSubmit);
+
+    productInfoBloc.stream.listen((state) {
+      if(state is ProductLoaded){
+        add(OwnCommentFetch());
+      }
+    });
+
   }
 
   void _onOwnCommentFetch(OwnCommentFetch event, Emitter emit) async {

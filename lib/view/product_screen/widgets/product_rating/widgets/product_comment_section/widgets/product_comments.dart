@@ -17,25 +17,30 @@ class ProductComments extends StatelessWidget {
           );
         }
         if (state is ProductCommentLoaded) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(20.0),
-                child: Text("View what others have said about this product:", style: TextStyle(fontSize: 18),),
-              ),
-              SizedBox(
-                height: 500,
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+          return Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                const Text(
+                  "View what others have said about this product:",
+                  style: TextStyle(fontSize: 18),
+                ),
+                IconButton(onPressed: () {
+                  context.read<ProductCommentBloc>().add(ProductCommentFetch());
+                }, icon: const Icon(Icons.refresh)),
+                SizedBox(
+                  height: 150 * state.comments.length > 500
+                      ? 500
+                      : 150 * state.comments.length.toDouble(),
                   child: ListView.builder(
                       itemCount: state.comments.length,
                       itemBuilder: (context, index) {
                         return CommentItem(comment: state.comments[index]);
                       }),
                 ),
-              ),
-            ],
+              ],
+            ),
           );
         }
         return const SizedBox(

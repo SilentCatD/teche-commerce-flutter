@@ -10,31 +10,6 @@ class ProductCommentSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProductInfoBloc, ProductState>(
-      builder: (context, state) {
-        if (state is ProductLoading || state is ProductInitial) {
-          return const SizedBox(
-            height: 300,
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
-          );
-        }
-        if (state is ProductLoaded) {
-          return BlocProvider(
-            create: (context) => ProductCommentBloc(
-                dataRepository: context.read<DataRepository>(),
-                productId: state.product.id)..add(ProductCommentFetch()),
-            child: const ProductComments(),
-          );
-        }
-        return const SizedBox(
-          height: 300,
-          child: Center(
-            child: Text("Something went wrong"),
-          ),
-        );
-      },
-    );
+    return const ProductComments();
   }
 }

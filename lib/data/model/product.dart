@@ -16,6 +16,8 @@ class Product {
   late final List<int> rates;
   Category? category;
   Brand? brand;
+  bool? inFavorite;
+  bool? inCart;
 
   Product.fromJSON(Map<String, dynamic> data) {
     id = data['id'];
@@ -43,6 +45,8 @@ class Product {
     }
     buyCount = data['buyCount'];
     viewCount = data['viewCount'];
+    inCart = data['inCart'];
+    inFavorite = data['inFavorite'];
   }
 
   Product({
@@ -59,5 +63,7 @@ class Product {
     required this.rates,
     this.category,
     this.brand,
+    this.inCart,
+    this.inFavorite
   });
 }
